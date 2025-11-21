@@ -7,7 +7,7 @@ using System.Windows;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набор атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("TimeLord_Toshmatov")]
+[assembly: AssemblyTitle("Данное приложение позволяет измерять интервалы времени с точностью до долей секунды.")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
