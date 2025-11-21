@@ -23,25 +23,26 @@ namespace TimeLord_Toshmatov
         public MainWindow()
         {
             InitializeComponent();
-            OpenPages(Pages.stopwatch);
+
+            OpenPages(pages.stopwatch); 
         }
 
         /// <summary>
-        /// Доступные страницы приложения
+        /// перечесляемый тип страниц
         /// </summary>
-        public enum Pages
+        public enum pages
         {
-            stopwatch
+            stopwatch // секундомер
         }
 
         /// <summary>
-        /// Навигация на указанную страницу
+        /// Функция открытия страниц
         /// </summary>
-        /// <param name="page">Целевая страница</param>
-        public void OpenPages(Pages page)
+        /// <param name="_page">Открыть страницу</param>
+        public void OpenPages(pages _page)
         {
-            if (page == Pages.stopwatch)
-                Frame.Navigate(new Pages.Stopwath());
+            if (_page == pages.stopwatch) 
+                Frame.Navigate(new Pages.Stopwatch());
         }
     }
 }

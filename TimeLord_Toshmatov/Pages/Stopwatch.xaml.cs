@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace TimeLord_Toshmatov.Pages
 {
@@ -20,9 +21,56 @@ namespace TimeLord_Toshmatov.Pages
     /// </summary>
     public partial class Stopwatch : Page
     {
+        public DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        public int full_second = 0; 
+        public bool start_stopwatch = false;
+
         public Stopwatch()
         {
             InitializeComponent();
+            dispatcherTimer.Tick += TimerSecond;
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 1); 
+        }
+
+        /// <summary>
+        /// Функция таймера для выполнения
+        /// </summary>
+        private void TimerSecond(object sender, EventArgs e)
+        {
+            full_second++;
+
+            int hours = full_second / 3600;
+            int minutes = (full_second % 3600) / 60;
+            int seconds = full_second % 60;
+
+            string s_seconds = seconds.ToString();
+            if (seconds < 10) s_seconds = "0" + seconds;
+
+            string s_minutes = minutes.ToString();
+            if (minutes < 10) s_minutes = "0" + minutes;
+
+            string s_hours = hours.ToString();
+            if (hours < 10) s_hours = "0" + hours;
+
+            time.Content = s_hours + ":" + s_minutes + ":" + s_seconds; 
+        }
+
+        private void StartStopwatch(object sender, RoutedEventArgs e)
+        {
+            if (start_stopwatch == false)
+            {
+                full_second = 0;
+                time.Content = "00:00:00"; 
+                dispatcherTimer.Start();
+                start_stopwatch = true;
+                start.Content = "Cron";
+            }
+            else
+            {
+                dispatcherTimer.Stop();
+                start_stopwatch = false;
+                start.Content = "Havars"; 
+            }
         }
     }
 }
